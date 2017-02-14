@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170213014520) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 20170213014520) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
 end

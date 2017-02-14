@@ -1,6 +1,6 @@
 Rails.application.configure do
 
-
+#イマイチちゃんと入力してない。実際のホスト名とか
  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   host = 'warikan-books.herokuapp.com'
