@@ -24,9 +24,6 @@ class UsersController < ApplicationController
 
  def show 
    @user = User.find(params[:id])
-   redirect_to root_url 
-
-
  end
 
  def create 
@@ -59,7 +56,7 @@ def update
 
       def correct_user
         @user = User.find(params[:id])
-        redirect_to(root_url) unless current_user?(@user)
+        redirect_to(root_path) unless current_user?(@user)
       end
 
       private
