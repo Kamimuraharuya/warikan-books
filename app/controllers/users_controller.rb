@@ -15,26 +15,28 @@ class UsersController < ApplicationController
   end
 #    @users = User.where(activated:FILL_IN).paginate(page: params[:page])
 
-  def edit
-  end
+def edit
+end
 
-  def new
-   @user = User.new
- end
+def new
+ @user = User.new
+end
 
- def show 
-   @user = User.find(params[:id])
- end
+def show 
+ @user = User.find(params[:id])
+ @microposts = @user.microposts.paginate(page: params[:page])
 
- def create 
-   @user = User.new(user_params)
-   if @user.save
-    UserMailer.account_activation(@user).deliver_now
-    flash[:info] = "Please check your email to activate your account."
-    redirect_to root_url
-  else
-    render "new"
-  end
+end
+
+def create 
+ @user = User.new(user_params)
+ if @user.save
+  UserMailer.account_activation(@user).deliver_now
+  flash[:info] = "Please check your email to activate your account."
+  redirect_to root_url
+else
+  render "new"
+end
 end
 
 def update
@@ -46,13 +48,7 @@ def update
           render "edit"
         end
       end
-      def logged_in_user
-        unless logged_in?
-          store_location
-          flash[:danger] = "Please log in."
-          redirect_to login_url
-        end
-      end
+      
 
       def correct_user
         @user = User.find(params[:id])
