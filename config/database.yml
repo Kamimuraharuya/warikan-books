@@ -18,7 +18,7 @@ test:
 
 production:
   <<: *default
-  encoding: ja_JP.UTF-8
+  encoding: unicode
   database: d9sojl4q3ff740
   port: 5432
   username: iugbdhnjqmdllv
