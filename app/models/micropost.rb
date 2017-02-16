@@ -8,6 +8,8 @@ class Micropost < ApplicationRecord
 	validate :picture_size
 
 
+
+
 private
 # アップロードされた画像のサイズをバリデーションする
     def picture_size

@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails_12factor', group: :production
+gem "ransack"
+gem 'kaminari'
 
 gem 'carrierwave'
 gem 'mini_magick'

@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+02  <div class="panel-heading">
+03    <div class="panel-title">検索</div>
+04  </div>
+05  <div class="panel-body">
+06    <%= search_form_for(@q, method: :get) do |f| %>
+07      <div class="row">
+08        <div class="col-sm-6">
+09          <div class="form-group">
+10            <%= f.label :bookname_eq %>
+11            <%= f.text_field :bookname_eq, class: "form-control", placeholder: "完全一致" %>
+12          </div>
+13        </div>
+14        
+34      <%= f.submit '検索', class: "btn btn-primary" %>
+35      <%= link_to 'クリア', url_for, class: "btn btn-default" %>
+36    <% end %>
+37  <div>
+38</div>
+
+<hr />
+  <ol class="microposts">
+    <%= render @microposts %>
+  </ol>
+  <%= will_paginate @microposts %>
+
+
+　
