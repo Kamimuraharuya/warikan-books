@@ -1,5 +1,6 @@
 class Micropost < ApplicationRecord
 	belongs_to :user
+	has_many :likes, dependent: :destroy
 	mount_uploader :picture, PictureUploader
 	validates :user_id, :bookname,:area,  :kakikomi, presence: true
 	validates :day, :bookprice, numericality: {only_integer: true, less_than: 9999}, presence: true
@@ -7,7 +8,9 @@ class Micropost < ApplicationRecord
 	default_scope -> { order(created_at: :desc) }
 	validate :picture_size
 
-
+def like_user(user_id)
+   likes.find_by(user_id: user_id)
+  end
 
 
 private
