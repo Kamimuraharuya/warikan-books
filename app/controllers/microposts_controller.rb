@@ -4,6 +4,11 @@ class MicropostsController < ApplicationController
 	before_action :correct_user,   only: :destroy
 
 
+   def show
+   	@micropost = Micropost.where(micropost_id: params[:micropost_id])
+   
+   end 
+
 	def index
 		@likes = Like.where(micropost_id: params[:id])
 		@q = Micropost.ransack(params[:q])
