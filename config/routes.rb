@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+    get "/microposts/tatiage" => "microposts#tatiage"
 
 	get "login" => "sessions#new"
 	post "login" => "sessions#create"

@@ -19,10 +19,10 @@ class MicropostsController < ApplicationController
 		@micropost = current_user.microposts.build(micropost_params)
 		if @micropost.save
 			flash[:success] = "Micropost created!"
-			redirect_to root_url
+			redirect_to :show
 		else
 			@feed_items = []
-			render 'book/home'
+			redirect_to microposts_tatiage_path
 		end
 	end
 
