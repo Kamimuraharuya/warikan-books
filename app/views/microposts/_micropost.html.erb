@@ -7,10 +7,12 @@
 		<div><%= micropost.bookprice %></div>
 		<div><%= micropost.day %></div>
 		<div><%= micropost.kakikomi %></div>
+		<div><%= micropost.person_number %></div>
 		
 		<div><%= micropost.content if micropost.content? %></div>
 
 
+<% unless micropost.person_number.to_i  == micropost.likes_count.to_i + 1 %>　
 		<% if logged_in? %>
 		<% if micropost.like_user(current_user.id) %>
 		<div>
@@ -53,5 +55,10 @@
 	<% end %>
 	<% end %>
 	</span>
+	<% else %>
+	<div>
+	終了しましたよ！！
+	</div>
+	<% end %>
 
 </li>

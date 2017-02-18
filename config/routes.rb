@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 	get 'help'    => 'book#help'
 	get 'about'   => 'book#about'
 	get 'contact' => 'book#contact'
-
+    resources :chats
 	resources :users
 	resources :account_activations, only: [:edit]
 	resources :password_resets,     only: [:new, :create, :edit, :update]

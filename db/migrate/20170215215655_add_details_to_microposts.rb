@@ -6,5 +6,5 @@ class AddDetailsToMicroposts < ActiveRecord::Migration[5.0]
 		add_column :microposts, :bookprice, :integer
 		add_column :microposts, :bookname, :string
 		add_column :microposts, :likes_count, :integer
-	end
+	 end
 end

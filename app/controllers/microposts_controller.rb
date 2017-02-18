@@ -5,7 +5,7 @@ class MicropostsController < ApplicationController
 
 
    def show
-   	@micropost = Micropost.where(micropost_id: params[:micropost_id])
+   	@micropost = Micropost.find(params[:id])
    
    end 
 
@@ -36,7 +36,7 @@ class MicropostsController < ApplicationController
 	private
 
 	def micropost_params
-		params.require(:micropost).permit(:content, :picture,:bookname,:area, :bookprice, :day, :kakikomi)
+		params.require(:micropost).permit(:content, :picture,:bookname,:area, :bookprice, :day, :kakikomi,:person_number )
 	end
 
 	def correct_user

@@ -16,7 +16,10 @@
 場所、大学名
 </h>
 <div><%= f.text_field :area, size: 20, maxlength:30%></div>
-<div></div>
+<h>
+ワリカン人数（半角）
+</h>
+<div><%= f.number_field :person_number, min: 2, max: 5 %></div>
 <h>
 購入金額（半角）
 </h>
