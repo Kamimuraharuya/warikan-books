@@ -5,6 +5,14 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.account_activation.subject
   #
+  def chat_created(user)
+    user = User.first
+  #participant =  BさんとCさん（そのポストにlikeつけてる人）
+    mail to: user.mail, subject: "ワリカン成立"
+    #mail to: participant.mail, subject: "ワリカン成立"
+  end
+
+
   def account_activation(user)
     @user = user
     mail to: user.email, subject: "アカウント登録だよ"

@@ -1,19 +1,23 @@
 class ChatsController < ApplicationController
-	def show 
-		@chats = Chat.chat_list
-		@chat = Chat.new
-	end
-
 	
 
+	def show 
+		@micropost = Micropost.find(params[:id])
+		@messages = Message.where(chat_id: params[:id])
+		@message = Message.new
+	end
+
 	def create
-		@chat = Chat.new(params.require(:chat).permit(:person_name, :body))
-		if @chat.save
+		@message = Message.create(chat_id: params[:id])
+		if @message.save
+			@messages = Message.where(chat_id: params[:id])
 			redirect_to(:back)
 		else
-			@chats = Chat.chat_list
+			@messages = Message.where(chat_id: params[:id])
 			redirect_to(:back)
 		end
 	end
+
+	
 
 end

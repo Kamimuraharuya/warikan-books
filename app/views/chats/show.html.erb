@@ -1,20 +1,24 @@
+<ol class="microposts">
+            <%= render @micropost %>  
+            </ol>
+
 <h1>チャットルーム</h1>
 
-<%= form_for(@chat) do |f| %>
-  <% if @chat.errors.any? %>
-    <% @chat.errors.full_messages.each do |err| %>
+<%= form_for(@message, url: chats_path) do |f| %>
+  <% if @message.errors.any? %>
+    <% @message.errors.full_messages.each do |err| %>
       <font color="red"><%= err %></font><br>
     <% end %>
   <% end %>
 
-  <div><%= f.text_field :person_name %></div>
+  <div><%= f.text_field :person_name, size:15 %></div>
   <div><%= f.text_area :body %></div>
   <%= f.submit %><br>
 <% end %>
 <hr>
 
-<% @chats.each do |chat| %>
-  <%= chat.person_name %> : <%= chat.created_at %><br>
-  <pre><%= chat.body %></pre>
+<% @messages.each do |msg| %>
+  <%= msg.person_name %> : <%= msg.created_at %><br>
+  <pre><%= msg.body %></pre>
   <br>
 <% end %>
