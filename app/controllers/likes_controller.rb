@@ -19,7 +19,7 @@ class LikesController < ApplicationController
 		#漸次的においてるけど、誰かに質問したい＠＠＠取り出してんのがIDだけになってるのが原因んだと思われれう
 		hostman = User.find_by(id: user.id)
 		participant  = User.find_by(id: users.id) 
-		  
+		 
 		@mail = NoticeMailer.chat_created(hostman, participant).deliver
 		flash[:success] = "ワリカンが成立しました"
 		#redirect_to controller: :microposts, action: :show, id: params[:micropost_id]

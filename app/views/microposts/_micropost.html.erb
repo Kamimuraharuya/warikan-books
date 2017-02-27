@@ -2,7 +2,8 @@
 	<%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
 	<span class="user"><%= link_to micropost.user.name, micropost.user %></span>
 	<span>
-		<table width="340", border="5">
+	<div class="table-responsive">
+		<table class="table" >
 			<tr>
 				<td>タイトル</td>
 				<td><%= micropost.bookname %></td>
@@ -65,8 +66,7 @@
 	
 
 	<% else %><%# ログインしてなかったら　%>
-	<%= link_to　"参加するにはログインしてください", login_path, id: "like-button" %>
-	<% end %><%# ログインしてるか　%>
+ログインしてね	<% end %><%# ログインしてるか　%>
 
 	
 	
