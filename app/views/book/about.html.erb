@@ -1,5 +1,11 @@
 <% provide(:title, "About") %>
 
+<%= form_tag '#', id: 'message' do %>
+  <%= text_field_tag 'body' %>
+<% end %>
+<ul id="message-list">
+</ul>
+
 <h1>About</h1>
 <p>
   The <a href="http://www.railstutorial.org/"><em>Ruby on Rails

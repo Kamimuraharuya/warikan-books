@@ -15,3 +15,9 @@
 //= require bootstrap  
 //= require turbolinks
 //= require_tree .
+window.addEventListener('load', () => {
+   document.getElementById('message').onsubmit = () => {
+       App.chat.put_message(document.getElementById('body').value);
+       return false;
+   }
+});
