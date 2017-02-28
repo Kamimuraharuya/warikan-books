@@ -1,12 +1,72 @@
-<strong>
-インした後のページだよ！！
-</strong>
 
 <ol class="microposts">
-						<%= render @micropost %>	
-						</ol>
+	<%= render @micropost %>	
+</ol>
 
+<% unless @micropost.person_number.to_i  == @micropost.likes_count.to_i + 1 %>
 
-<div>
-facebookとTwitterでシェアを促す
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Facebook, Twitterでシェアしてワリカンメンバーを探そう！</h3>
+  </div>
 </div>
+
+<table>
+		<%= render "shared/facebook" %>
+                <%= render "shared/twitter" %>		
+		</table>
+<% else %>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">ワリカンが成立しました！！</h3>
+  </div>
+  <div class="panel-body">
+  メンバー全員の元にメンバーの連絡先がメールとして送信されます。
+  <br>ここから先は互いに連絡しあってください。
+</div></div>
+
+<%# num1 = micopost.bookprice.to_i *  micropost.person_number.to_i /(micropost.person_number.to_i + 1)%>
+<%# num2 = micopost.bookprice.to_i *  (micropost.person_number.to_i - 1) /(micropost.person_number.to_i + 1)%>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">集合場所、時間を決めて本を手渡ししてください</h3>
+  </div>
+  <div class="panel-body">
+　<li>BさんはAさんに<strong><%#= num1 %>1000円</strong>渡してください。</li>
+　<li>CさんはBさんに<strong><%#= num2 %>500円</strong>渡してください。</li>
+</div></div>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">ワリカンメンバー同士の交流までがワリカンbooksの醍醐味です！</h3>
+  </div>
+  <div class="panel-body">
+    <strong><li>
+    手渡しの際に読書トークをしたり、共通の趣味を持つ友人となったりできます。
+    </li></strong>
+    <strong><li>
+    読んだ本について議論しあったり、読書会を開けばさらに読書は深まります
+    </li></strong>
+    <strong><li>
+    色恋沙汰に対する責任は一切負いません。
+    </li></strong>
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">ワリカンの成立を友達にシェアして、次なるワリカンの布石に！！</h3>
+  </div>
+  <div class="panel-body">
+ <%= render "shared/facebook" %>
+                <%= render "shared/twitter" %>
+
+  </div>
+</div>
+
+
+
+<% end %>

@@ -1,6 +1,6 @@
 <%= form_for(@micropost, html: { multipart: true }) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
-
+<%# エラーメセ出すのと、クリックしても吐蕃ようにする %>
 <div>
 <h>
 	本の名前
@@ -39,7 +39,7 @@
 <h>本の状態、書き込みテーマなど（任意）</h>
 	<%= f.text_area :content, placeholder: "テーマ、本の状態など" %>
 </div>
-<%= f.submit "Post", class: "btn btn-primary" %>
+<%= f.submit "Post", class: "btn btn-primary", data: { confirm: "You sure?" }  %>
 
 <% end %>
 

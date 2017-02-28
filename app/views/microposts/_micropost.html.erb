@@ -29,11 +29,16 @@
 			<td><%= micropost.kakikomi %></td>
 		</tr>
 	</table>
-	<strong>書きこみテーマ、その他本の状態など</strong>
-	<div><%= micropost.content if micropost.content? %></div>
-	<br>
 
 	
+
+	<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">書きこみテーマ、その他本の状態など</h3>
+  </div>
+  <div class="panel-body"><%= micropost.content if micropost.content? %>
+ </div>
+</div>
 
 	<% unless micropost.person_number.to_i  == micropost.likes_count.to_i + 1 %>　
 
@@ -41,34 +46,39 @@
 		<% x = 1
 		result = micropost.likes_count.to_i + 1%>
 	</strong>
-	<div>
-		現在のメンバーは<strong><%= result %></strong>人です！
-	</div>
-	
-	<span>
+	<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">現在のメンバーは<strong><%= result %></strong>人です！</h3>
+  </div>
+  <div class="panel-body"><span>
 		<div><% result =micropost.person_number.to_i - micropost.likes_count.to_i - 1%>
 		</div>
-		あと<%= result %>人です！参加してね、待ってね！＝＝あとで分ける
-	</span>
+		
+	あと<%= result %>人です！参加してね</span>
+ </div>
+</div>
+	
+	<% unless current_user?(micropost.user) %>
+<% if logged_in? %>
+<% if micropost.like_user(current_user.id) %><%# いいねしてるか否か　%>
+	<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">あなたは参加しています！人数が集まるまで待ってください！</h3>
+  </div>
+  </div></div>
 
-
-	<% if logged_in? %>
-
+	
+	<% else %>
 	<%= button_to micropost_likes_path(micropost), id: "like-button", data: { confirm: "You sure?" } do %>
 	<%= "参加する" %>
 	<% end %>
-
-	<% if micropost.like_user(current_user.id) %>
-	<div>
-		<strong>あなたは参加しています！人数が集まるまで待ってください！</strong>
-	</div>
-	<% end %><%# いいねしてるか否か　%>
+	<% end %>
+<%# いいねしてるか否か　%>
 	
-
 	<% else %><%# ログインしてなかったら　%>
-ログインしてね	<% end %><%# ログインしてるか　%>
+<%= button_to "参加するにはサインアップしてください", signup_path,  class: "btn btn-primary"%>	<% end %><%# ログインしてるか　%>
 
-	
+<% end %>
 	
 </span>
 
@@ -88,9 +98,12 @@ data: { confirm: "You sure?" }  %>
 
 <% else %><%#  メンバー揃っていなかったら %>
 
-<div>
-	終了しましたよ！！
-</div>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">終了しました！！</h3>
+  </div>
+  </div></div>
+
 <% end %><%#  メンバー揃っていなかったら %>
 <span class="timestamp">
 Posted <%= time_ago_in_words(micropost.created_at) %> ago.

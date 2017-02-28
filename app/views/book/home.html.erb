@@ -1,7 +1,5 @@
 <% provide(:title, "Home") %>
 
-
-
 <% unless logged_in? %>
 <div class="center jumbotron">
 	<h1>ワリカンbooks</h1>
@@ -30,7 +28,4 @@
   <%= link_to "本を探す", microposts_path, class: "btn btn-lg btn-primary" %>
 </div>
 <% end %>
-<div><%= render "shared/facebook" %>
-</div>
-
 
