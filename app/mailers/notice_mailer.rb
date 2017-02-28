@@ -6,10 +6,10 @@ class NoticeMailer < ApplicationMailer
   #
   #   en.notice_mailer.chat_created.subject
   #
-  def chat_created(hostman, participant)
-    @user = hostman
-    @users = participant
-    mail to: hostman.email,  subject: "ワリカン成立"
-    mail to: participant.email, subject: "ワリカン成立"
+   def chat_created(user, emails)
+    @user = user
+    @emails = emails
+    mail to: user.email, subject: "ワリカン成立"
   end
 end
+

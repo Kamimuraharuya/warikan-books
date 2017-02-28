@@ -5,22 +5,25 @@ class LikesController < ApplicationController
 		@likes = Like.where(micropost_id: params[:micropost_id])
 		@microposts = Micropost.all
 		@micropost = Micropost.find(params[:micropost_id])
-		unless @micropost.person_number.to_i  == @micropost.likes_count.to_i + 1
-			redirect_to controller: :microposts, action: :show, id: params[:micropost_id]
-		 else
-		like = Like.find_by(micropost_id: params[:micropost_id])
-		user = @micropost.user
-		users = like.user
+		#unless @micropost.person_number.to_i  == @micropost.likes_count.to_i + 1
+			#redirect_to controller: :microposts, action: :show, id: params[:micropost_id]
+		#else
 
-		hostman = User.find_by(id: user.id)
-		participant  = User.find_by(id: users.id) 
-		 
-		@mail = NoticeMailer.chat_created(hostman, participant).deliver
+users = []
+		likes = @micropost.likes
+		host = @micropost.user
+		users = User.where(id: likes.pluck(:user_id) << host.id )
+
+		emails = users.pluck(:email)
+
+		users.each do |user|
+			NoticeMailer.chat_created(user, emails).deliver
+		end
+
 		flash[:success] = "ワリカンが成立しました"
 		redirect_to controller: :microposts, action: :show, id: params[:micropost_id]
-end
-
-end
+		#end
+	end 
 
 
 
