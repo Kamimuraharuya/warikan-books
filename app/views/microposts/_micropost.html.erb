@@ -1,6 +1,4 @@
-<%= button_to micropost_likes_path(micropost), class: "btn btn-primary", data: { confirm: "You sure?" } do %>
-		<%= "参加する" %>
-		<% end%>
+
 <li id="<%= micropost.id %>">
 	<%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
 	<span class="user"><%= link_to micropost.user.name, micropost.user %></span>
@@ -42,13 +40,15 @@
 			<div class="panel-body"><%= micropost.content if micropost.content? %>
 			</div>
 		</div>
+		<h><%= image_tag micropost.picture.url if micropost.picture? %></h>
+
+
 
 		<% unless micropost.person_number.to_i  == micropost.likes_count.to_i + 1 %>　
-
-		<strong>
+		<div>
 			<% x = 1
 			result = micropost.likes_count.to_i + 1%>
-		</strong>
+		</div>
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">現在のメンバーは<strong><%= result %></strong>人です！</h3>
@@ -56,45 +56,35 @@
 			<div class="panel-body"><span>
 				<div><% result =micropost.person_number.to_i - micropost.likes_count.to_i - 1%>
 				</div>
-
 				あと<%= result %>人です！参加してね</span>
 			</div>
 		</div>
 
-		<% if current_user?(micropost.user) %>
+
+		<% unless current_user?(micropost.user) %>
+
 		<% if logged_in? %>
+
 		<% if micropost.like_user(current_user.id) %><%# いいねしてるか否か　%>
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">あなたは参加しています！人数が集まるまで待ってください！</h3>
 			</div>
-		</div></div>
-
-
-		<% else %>
+		</div>
+		<% else %><%# いいねしてるか否か　%>
 		<%= button_to micropost_likes_path(micropost), class: "btn btn-primary", data: { confirm: "You sure?" } do %>
 		<%= "参加する" %>
-		<% end %>
-		<% end %>
-		<%# いいねしてるか否か　%>
+		<% end %><%# do %>
+		<% end %><%# いいねしてるか否か　%>
 
 		<% else %><%# ログインしてなかったら　%>
-		<%= button_to "参加するにはサインアップしてください", signup_path,  class: "btn btn-primary"%>	<% end %><%# ログインしてるか　%>
-
-		<% end %>
-
+		<%= button_to "参加するにはサインアップしてください", signup_path,  class: "btn btn-primary"%>	
+		<% end %><%# ログインしてるか　%>
 	</span>
+	<% else %><%# ポストの持ち主ならば　%>
 
-
-	<h><%= image_tag micropost.picture.url if micropost.picture? %></h>
-
-	<% if current_user?(micropost.user) %>
-	<% if micropost.likes_count == 0 %>
-
-	<%= link_to "delete", micropost, method: :delete,
-	data: { confirm: "You sure?" }  %>
-
-	<% end %>
+	<%= link_to "ポストを削除（参加者がいると削除できません）", micropost, method: :delete,
+	data: { confirm: "You sure?" }  if micropost.likes_count == 0 %>
 	<% end %>
 </span>
 
