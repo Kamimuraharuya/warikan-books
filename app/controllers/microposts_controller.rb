@@ -6,6 +6,7 @@ class MicropostsController < ApplicationController
 
 	def show
 		@micropost = Micropost.find(params[:id])
+		@likes = Like.where(micropost_id: params[:id])
 	end 
 
 	def index

@@ -1,15 +1,34 @@
-<td><% @emails.each do |email| %>
-<%= email %>
+<strong>
+	ワリカンが成立しました！！
+</strong>
+<h1>
+	メンバー同士で連絡を取り合って、濃い読書体験を！！
+</h1>
+
+
+<% x = 0 %>
+<% y = @micropost.person_number.to_i %>
+<% while x <= y do %>
+<td color="red">
+	<%=	x += 1 %> 
 </td>
 <% end %>
-<td>
 
-</td>
-<td><%# @users.name.each do |name| %>
-</td>
-<%# end %>
+<div class="table-responsive">
+	<table class="table" >
+		<tr>
+			<% @users.each do |user| %>	
+			<td><%= user.name %></td>
+			<td><%= user.email %></td>
+		</tr>
+		<% end %>
+	</tr>
+</table>
+の順で回してください
+</div>
+
+
 <div>
-<%= link_to "企画のページに飛ぶ", micropost_url(id: @micropost.id) %>
 	<% x = @micropost.person_number.to_i %>
 	<% y = @micropost.person_number.to_i %>
 	<% while y >= 2 do %>
@@ -20,3 +39,9 @@
 		<%= @micropost.bookprice.to_i *  y / x %>円を渡してください</li>
 		<% end %>
 	</div>
+
+	<div>
+		詳しくは<%= link_to "企画のページ", micropost_url(id: @micropost.id) %>をご覧ください。
+	</div>
+
+

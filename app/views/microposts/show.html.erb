@@ -1,19 +1,37 @@
 <div>
-<% x = @micropost.person_number.to_i %>
-<% y = @micropost.person_number.to_i %>
-<% while y >= 2 do %>
-<% y -= 1%>
-<% z = x - y + 1 %>
-<% v = z - 1 %>
-<li><%= z %>人目の人は<%= v %>人目の人に
-<%= @micropost.bookprice.to_i *  y / x %>円を渡してください</li>
-<% end %>
+  <% x = @micropost.person_number.to_i %>
+  <% y = @micropost.person_number.to_i %>
+  <% while y >= 2 do %>
+  <% y -= 1%>
+  <% z = x - y + 1 %>
+  <% v = z - 1 %>
+  <li><%= z %>人目の人は<%= v %>人目の人に
+    <%= @micropost.bookprice.to_i *  y / x %>円を渡してください</li>
+    <% end %>
+  </div>
+
+
+  <ol class="microposts">
+   <%= render @micropost %>	
+ </ol>
+
+ <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">ワリカンが成立しました！！</h3>
+  </div>
+  <div class="panel-body">
+    メンバー全員の元にメンバーの連絡先がメールとして送信されます。
+    <br>ここから先は互いに連絡しあってください。
+    <br>
+    <br>
+    <strong>順番</strong> 
+    <li><strong><%= @micropost.user.name %></strong>さん(企画者)
+    </li>
+    <% @likes.each do |like| %>
+    <li><strong><%= like.user.name %></strong>さん</li>
+    <% end %>
+  </div>
 </div>
-
-
-<ol class="microposts">
-	<%= render @micropost %>	
-</ol>
 
 <% unless @micropost.person_number.to_i  == @micropost.likes_count.to_i + 1 %>
 
@@ -24,9 +42,9 @@
 </div>
 
 <table>
-		<%= render "shared/facebook" %>
-                <%= render "shared/twitter" %>		
-		</table>
+  <%= render "shared/facebook" %>
+  <%= render "shared/twitter" %>		
+</table>
 <% else %>
 
 <div class="panel panel-primary">
@@ -34,9 +52,19 @@
     <h3 class="panel-title">ワリカンが成立しました！！</h3>
   </div>
   <div class="panel-body">
-  メンバー全員の元にメンバーの連絡先がメールとして送信されます。
-  <br>ここから先は互いに連絡しあってください。
-</div></div>
+    メンバー全員の元にメンバーの連絡先がメールとして送信されます。
+    <br>ここから先は互いに連絡しあってください。
+    <div>
+      順番
+    </div>
+    <li><strong><%= @micropost.user.name %></strong>さん(企画者)
+    </li>
+    <% @likes.each do |like| %>
+    <li><strong><%= like.user.name %></strong>さん</li>
+    <% end %>
+  </div>
+</div>
+
 
 
 
@@ -46,49 +74,49 @@
     <h3 class="panel-title">集合場所、時間を決めて本を手渡ししてください</h3>
   </div>
   <div class="panel-body">
-  <div>
-<% x = @micropost.person_number.to_i %>
-<% y = @micropost.person_number.to_i %>
-<% while y >= 2 do %>
-<% y -= 1%>
-<% z = x - y + 1 %>
-<% v = z - 1 %>
-<li><%= z %>人目の人は<%= v %>人目の人に
-<%= @micropost.bookprice.to_i *  y / x %>円を渡してください</li>
-<% end %>
-<br>(トラブル防止のため、原則として正確な額を受け渡してください。)
-</div>
-</div></div>
+    <div>
+      <% x = @micropost.person_number.to_i %>
+      <% y = @micropost.person_number.to_i %>
+      <% while y >= 2 do %>
+      <% y -= 1%>
+      <% z = x - y + 1 %>
+      <% v = z - 1 %>
+      <li><%= z %>人目の人は<%= v %>人目の人に
+        <%= @micropost.bookprice.to_i *  y / x %>円を渡してください</li>
+        <% end %>
+        <br>(トラブル防止のため、原則として正確な額を受け渡してください。)
+      </div>
+    </div></div>
 
 
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">ワリカンメンバー同士の交流までがワリカンbooksの醍醐味です！</h3>
-  </div>
-  <div class="panel-body">
-    <strong><li>
-    手渡しの際に読書トークをしたり、共通の趣味を持つ友人となったりできます。
-    </li></strong>
-    <strong><li>
-    読んだ本について議論しあったり、読書会を開けばさらに読書は深まります
-    </li></strong>
-    <strong><li>
-    色恋沙汰に対する責任は一切負いません。
-    </li></strong>
-  </div>
-</div>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">ワリカンメンバー同士の交流までがワリカンbooksの醍醐味です！</h3>
+      </div>
+      <div class="panel-body">
+        <strong><li>
+          手渡しの際に読書トークをしたり、共通の趣味を持つ友人となったりできます。
+        </li></strong>
+        <strong><li>
+          読んだ本について議論しあったり、読書会を開けばさらに読書は深まります
+        </li></strong>
+        <strong><li>
+          色恋沙汰に対する責任は一切負いません。
+        </li></strong>
+      </div>
+    </div>
 
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">ワリカンの成立を友達にシェアして、次なるワリカンの布石に！！</h3>
-  </div>
-  <div class="panel-body">
- <%= render "shared/facebook" %>
-                <%= render "shared/twitter" %>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">ワリカンの成立を友達にシェアして、次なるワリカンの布石に！！</h3>
+      </div>
+      <div class="panel-body">
+       <%= render "shared/facebook" %>
+       <%= render "shared/twitter" %>
 
-  </div>
-</div>
+     </div>
+   </div>
 
 
 
-<% end %>
+   <% end %>

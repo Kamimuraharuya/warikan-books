@@ -1,3 +1,15 @@
+<div class="table-responsive">
+	<table class="table" >	
+		<tr>
+			<td>Mrs. Jerad Hammes</td>
+			<td>example-3@railstutorial.org</td>
+		</tr>
+		<tr>
+			<td>Example User</td>
+			<td>example@railstutorial.org</td>
+		</tr>
+	</table>
+</div>
 
 <li id="<%= micropost.id %>">
 	<%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
@@ -89,7 +101,7 @@
 
 		<%= link_to "ポストを削除", micropost, method: :delete,
 		data: { confirm: "You sure?" }, class: "btn btn-danger"  if micropost.likes_count.to_i == 0 %>
-		<strong color: red>*メンバーが参加した後は削除できません*</strong>
+		<strong color="red">*メンバーが参加した後は削除できません*</strong>
 		<% end %>
 	</span>
 
