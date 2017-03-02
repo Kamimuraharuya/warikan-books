@@ -1,5 +1,5 @@
 <li id="<%= micropost.id %>">
-	<%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+	<h><%= image_tag micropost.user.image.url  %></h>
 	<span class="user"><%= link_to micropost.user.name, micropost.user %></span>
 	<span>
 		<div class="table-responsive">
@@ -61,9 +61,9 @@
 					あと<%= result %>人です！参加してね</span></h3>
 				</div>
 				<div class="panel-body"><span>
-					<%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+					<%= image_tag micropost.user.image.url  %>
 					<% micropost.likes.each do |like| %>
-					<%= link_to gravatar_for(like.user, size: 50), like.user %>
+					<%= image_tag like.user.image.url  %>
 					<% end %>
 				</div>
 			</div>
