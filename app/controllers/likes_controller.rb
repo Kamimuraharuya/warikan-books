@@ -13,11 +13,11 @@ users = []
 		likes = @micropost.likes
 		host = @micropost.user
 		users = User.where(id: likes.pluck(:user_id) << host.id )
-
+        micropost = @micropost
 		emails = users.pluck(:email)
 
 		users.each do |user|
-			NoticeMailer.chat_created(user, emails).deliver
+			NoticeMailer.chat_created(user, emails,micropost,users).deliver
 		end
 
 		flash[:success] = "ワリカンが成立しました"

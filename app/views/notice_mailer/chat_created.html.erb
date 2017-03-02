@@ -1,2 +1,22 @@
-<h><%= @emails %>
-</h>
+<td><% @emails.each do |email| %>
+<%= email %>
+</td>
+<% end %>
+<td>
+
+</td>
+<td><%# @users.name.each do |name| %>
+</td>
+<%# end %>
+<div>
+<%= link_to "企画のページに飛ぶ", micropost_url(id: @micropost.id) %>
+	<% x = @micropost.person_number.to_i %>
+	<% y = @micropost.person_number.to_i %>
+	<% while y >= 2 do %>
+	<% y -= 1%>
+	<% z = x - y + 1 %>
+	<% v = z - 1 %>
+	<li><%= z %>人目の人は<%= v %>人目の人に
+		<%= @micropost.bookprice.to_i *  y / x %>円を渡してください</li>
+		<% end %>
+	</div>

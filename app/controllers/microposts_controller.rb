@@ -4,14 +4,17 @@ class MicropostsController < ApplicationController
 	before_action :correct_user,   only: :destroy
 
 
-   def show
-   	@micropost = Micropost.find(params[:id])
-   end 
+	def show
+		@micropost = Micropost.find(params[:id])
+	end 
 
 	def index
 		@likes = Like.where(micropost_id: params[:id])
 		@q = Micropost.ransack(params[:q])
 		@microposts = @q.result.paginate(page: params[:page])
+	end
+	def tatiage
+		@micropost = current_user.microposts.build#(micropost_params)
 	end
 
 	def create
@@ -21,7 +24,7 @@ class MicropostsController < ApplicationController
 			redirect_to micropost_path(id: @micropost.id)
 		else
 			@feed_items = []
-			redirect_to microposts_tatiage_path
+			render "tatiage"
 		end
 	end
 

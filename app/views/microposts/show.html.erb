@@ -1,3 +1,15 @@
+<div>
+<% x = @micropost.person_number.to_i %>
+<% y = @micropost.person_number.to_i %>
+<% while y >= 2 do %>
+<% y -= 1%>
+<% z = x - y + 1 %>
+<% v = z - 1 %>
+<li><%= z %>人目の人は<%= v %>人目の人に
+<%= @micropost.bookprice.to_i *  y / x %>円を渡してください</li>
+<% end %>
+</div>
+
 
 <ol class="microposts">
 	<%= render @micropost %>	
@@ -7,7 +19,7 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Facebook, Twitterでシェアしてワリカンメンバーを探そう！</h3>
+    <h3 class="panel-title"><strong>Facebook, Twitterでシェアしてワリカンメンバーを探そう！</strong></h3>
   </div>
 </div>
 
@@ -26,16 +38,26 @@
   <br>ここから先は互いに連絡しあってください。
 </div></div>
 
-<%# num1 = micopost.bookprice.to_i *  micropost.person_number.to_i /(micropost.person_number.to_i + 1)%>
-<%# num2 = micopost.bookprice.to_i *  (micropost.person_number.to_i - 1) /(micropost.person_number.to_i + 1)%>
+
+
 
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title">集合場所、時間を決めて本を手渡ししてください</h3>
   </div>
   <div class="panel-body">
-　<li>BさんはAさんに<strong><%#= num1 %>1000円</strong>渡してください。</li>
-　<li>CさんはBさんに<strong><%#= num2 %>500円</strong>渡してください。</li>
+  <div>
+<% x = @micropost.person_number.to_i %>
+<% y = @micropost.person_number.to_i %>
+<% while y >= 2 do %>
+<% y -= 1%>
+<% z = x - y + 1 %>
+<% v = z - 1 %>
+<li><%= z %>人目の人は<%= v %>人目の人に
+<%= @micropost.bookprice.to_i *  y / x %>円を渡してください</li>
+<% end %>
+<br>(トラブル防止のため、原則として正確な額を受け渡してください。)
+</div>
 </div></div>
 
 
