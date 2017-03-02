@@ -1,16 +1,3 @@
-<div class="table-responsive">
-	<table class="table" >	
-		<tr>
-			<td>Mrs. Jerad Hammes</td>
-			<td>example-3@railstutorial.org</td>
-		</tr>
-		<tr>
-			<td>Example User</td>
-			<td>example@railstutorial.org</td>
-		</tr>
-	</table>
-</div>
-
 <li id="<%= micropost.id %>">
 	<%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
 	<span class="user"><%= link_to micropost.user.name, micropost.user %></span>
@@ -18,46 +5,51 @@
 		<div class="table-responsive">
 			<table class="table" >
 				<tr>
-					<td>タイトル</td>
+					<td>本のタイトル</td>
 					<td><%= micropost.bookname %></td>
 				</tr>
 				<tr>
-					<td>エリア、大学名</td>
+					<td>エリア、大学名、キャンパス</td>
 					<td><%= micropost.area %></td>
 				</tr>
 				<tr>
+					<td>ワリカン人数</td>
+					<td><%= micropost.person_number %>人</td>
+				</tr>
+				<tr>
 					<td>一冊の値段</td>
-					<td><%= micropost.bookprice %></td>
+					<td><%= micropost.bookprice %>円</td>
 				</tr>
 				<tr>
 					<td>一人当たりの値段</td>
 					<div><% result = micropost.bookprice.to_i/micropost.person_number.to_i if micropost.person_number.to_i > 0 %></div>
-					<td><%= result %></td>
+					<td><%= result %>円</td>
 				</tr>
 				<tr>
-					<td>ワリカン人数</td>
-					<td><%= micropost.person_number %></td>
-				</tr><tr>
-				<td>書きこみ</td>
-				<td><%= micropost.kakikomi %></td>
-			</tr>
-		</table>
+					<td>一人当たりの日数</td>
+					<td><%= micropost.day %>日</td>
+				</tr>
+				<tr>
+					<td>書きこみ</td>
+					<td><%= micropost.kakikomi %></td>
+				</tr>
+			</table>
 
 
 
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">書きこみテーマ、その他本の状態など</h3>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">書きこみテーマ、その他本の状態など</h3>
+				</div>
+				<div class="panel-body"><%= micropost.content if micropost.content? %>
+				</div>
 			</div>
-			<div class="panel-body"><%= micropost.content if micropost.content? %>
-			</div>
-		</div>
-		<h><%= image_tag micropost.picture.url if micropost.picture? %></h>
+			<h><%= image_tag micropost.picture.url if micropost.picture? %></h>
 
 
 
-		<% unless micropost.person_number.to_i  == micropost.likes_count.to_i + 1 %>　
-		<div>
+			<% unless micropost.person_number.to_i  == micropost.likes_count.to_i + 1 %>　
+			<div>
 			<%# x = 1
 			result = micropost.likes_count.to_i + 1%>
 		</div>
@@ -106,7 +98,7 @@
 	</span>
 
 
-	<% else %><%#  メンバー揃っていなかったら %>
+	<% else %><%#  メンバー揃っていたら %>
 
 	<div class="panel panel-success">
 		<div class="panel-heading">

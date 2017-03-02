@@ -1,41 +1,9 @@
-<div>
-  <% x = @micropost.person_number.to_i %>
-  <% y = @micropost.person_number.to_i %>
-  <% while y >= 2 do %>
-  <% y -= 1%>
-  <% z = x - y + 1 %>
-  <% v = z - 1 %>
-  <li><%= z %>人目の人は<%= v %>人目の人に
-    <%= @micropost.bookprice.to_i *  y / x %>円を渡してください</li>
-    <% end %>
-  </div>
-
-
   <ol class="microposts">
    <%= render @micropost %>	
  </ol>
+ <% unless @micropost.person_number.to_i  == @micropost.likes_count.to_i + 1 %>
 
  <div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">ワリカンが成立しました！！</h3>
-  </div>
-  <div class="panel-body">
-    メンバー全員の元にメンバーの連絡先がメールとして送信されます。
-    <br>ここから先は互いに連絡しあってください。
-    <br>
-    <br>
-    <strong>順番</strong> 
-    <li><strong><%= @micropost.user.name %></strong>さん(企画者)
-    </li>
-    <% @likes.each do |like| %>
-    <li><strong><%= like.user.name %></strong>さん</li>
-    <% end %>
-  </div>
-</div>
-
-<% unless @micropost.person_number.to_i  == @micropost.likes_count.to_i + 1 %>
-
-<div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"><strong>Facebook, Twitterでシェアしてワリカンメンバーを探そう！</strong></h3>
   </div>
@@ -116,7 +84,4 @@
 
      </div>
    </div>
-
-
-
    <% end %>

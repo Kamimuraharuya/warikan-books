@@ -25,7 +25,7 @@ class MicropostsController < ApplicationController
 			redirect_to micropost_path(id: @micropost.id)
 		else
 			@feed_items = []
-			render "tatiage"
+			render "/microposts/tatiage"
 		end
 	end
 

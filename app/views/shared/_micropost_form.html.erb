@@ -8,7 +8,7 @@
 		<h>
 			本の名前
 		</h>
-		<%= f.text_field :bookname, class: 'form-control' %></div>
+		<%= f.text_field :bookname, class: 'form-control' %>
 		<h>
 			本の写真（任意）
 		</h>
@@ -20,29 +20,29 @@
 		</h>
 		<div><%= f.text_field :area, size: 20, maxlength:30, class: 'form-control' %></div>
 		<h>
-			ワリカン人数（半角）
+			ワリカン人数
 		</h>
-		<div><%= f.number_field :person_number, min: 2, max: 5 %></div>
+		<div><%= f.select :person_number, [2,3,4,5], {include_blank: "選択してください"}%></div>
 		<h>
 			購入金額（半角）
 		</h>
 		<div><%= f.number_field :bookprice, min: 100, max: 9999 %></div>
 		<h>
-			一人当たりの読書日数(半角)
+			一人当たりの読書日数
 		</h>
-		<div><%= f.number_field :day, min: 1, max: 30 %></div>
+		<div><%= f.select :day, [1,2,3,4,5,6,7], {include_blank: "選択してください"} %></div>
 
 		<h>
 			書き込み、ライン引き
 		</h>
 		<%= f.select :kakikomi, ["なし","ライン","メモあり","テーマ付き書き込み"], {include_blank: "選択してください"} %>
-	</div>
+	
 
 	<div class="field">
 		<h>本の状態、書き込みテーマなど（任意）</h>
 		<%= f.text_area :content, placeholder: "テーマ、本の状態など" %>
 	</div>
-	<%= f.submit "Post", class: "btn btn-primary", data: { confirm: "You sure?" }  %>
+	<%= f.submit "Post", data: { confirm: "You sure?" } , class: "btn btn-primary"%>
 </aside>
 </div>
 <% end %>
