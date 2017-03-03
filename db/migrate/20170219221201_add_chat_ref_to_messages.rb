@@ -5,3 +5,4 @@ class AddChatRefToMessages < ActiveRecord::Migration[5.0]
     t.references :chat, foreign_key: true
   end
 end
+end
