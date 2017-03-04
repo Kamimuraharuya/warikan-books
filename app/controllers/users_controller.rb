@@ -30,7 +30,20 @@ def show
 end
 
 def create 
- @user = User.new(user_params)
+  if env['omniauth.auth'].present?
+            # Facebookログイン--とりあえずこの分岐で全部終わらす
+            @user  = User.from_omniauth(env['omniauth.auth'])
+            result = @user.save(context: :facebook_login)
+            fb       = "Facebook"#のちの分岐に備えて
+            if result
+              sign_in @user
+              flash[:success] = "#{fb}ログインしました。" 
+            redirect_to @user#後でエディットに飛ばすー好きな本とか
+          else
+            redirect_to auth_failure_path
+          end
+        else#通常ログインそのまま　　
+ @user = User.new(user_params)#paramsで得る情報をuserモデルで編集せねば
  if @user.save
   UserMailer.account_activation(@user).deliver_now
   flash[:info] = "メールが送信されました。添付されたURLからユーザー登録を行っていください。
@@ -40,9 +53,10 @@ else
   render "new"
 end
 end
+end
 
 def update
-  if @user.update_attributes(user_params)
+  if @user.update_attributes(user_params)#Facebookやとパスワードがない
           # 更新に成功した場合を扱う。
           flash[:success] = "プロフィールが更新されました"
           redirect_to @user

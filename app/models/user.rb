@@ -16,26 +16,45 @@ class User < ApplicationRecord
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :image, presence: true  
   validate :image_size
+  validates :password, presence: false, on: :facebook_login
 
-  
+  def self.from_omniauth(auth)
+        # emailの提供は必須とする
+        user = User.where('email = ?', auth.info.email).first
+        if user.blank?
+          user = User.new
+        end
+        user.uid   = auth.uid
+        user.name  = auth.info.name
+        user.email = auth.info.email
+        user.image  = auth.info.image
+        user.description = auth.info.description#validatesで長さ絞るlater
+        user.oauth_token      = auth.credentials.token
+        user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+        #outh_tokenについてはわからない。多分向こうで使ってくれる
+        #outh_secretはいらないの？
+        user#なんのuser?これ
+      end
 
-  def feed
-    Micropost.where("user_id = ?", id)
-  end
 
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-    BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
 
-  end
-  def User.new_token
-    SecureRandom.urlsafe_base64
-  end
-  def remember
-    self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token))
-  end
+      def feed
+        Micropost.where("user_id = ?", id)
+      end
+
+      def User.digest(string)
+        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+        BCrypt::Engine.cost
+        BCrypt::Password.create(string, cost: cost)
+
+      end
+      def User.new_token
+        SecureRandom.urlsafe_base64
+      end
+      def remember
+        self.remember_token = User.new_token
+        update_attribute(:remember_digest, User.digest(remember_token))
+      end
 
    # 渡されたトークンがダイジェストと一致したらtrueを返す.ここでのリメトーはローカル変数
    def authenticated?(attribute, token)

@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 gem 'websocket-rails'
 
+gem 'omniauth-facebook'
+
 
 gem 'rails_12factor', group: :production
 gem "ransack"

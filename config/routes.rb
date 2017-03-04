@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 	get "/microposts/tatiage" => "microposts#tatiage"
 
+	get '/auth/:provider/callback',    to: 'users#create',       as: :auth_callback
+	get '/auth/failure',               to: 'users#auth_failure', as: :auth_failure
+
+	
 	get "login" => "sessions#new"
 	post "login" => "sessions#create"
 	delete "logout" => "sessions#destroy"
