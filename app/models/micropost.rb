@@ -4,7 +4,7 @@ class Micropost < ApplicationRecord
 	mount_uploader :picture, PictureUploader
 	validates :user_id, :bookname,:area,  :kakikomi, presence: true
 	validates :day, :bookprice, numericality: {only_integer: true, less_than: 9999}, presence: true
-	validates :content, length: { maximum: 140 }
+	validates :content, length: { maximum: 300 }
 	default_scope -> { order(created_at: :desc) }
 	validate :picture_size
 

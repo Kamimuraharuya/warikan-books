@@ -44,7 +44,7 @@ end
 def update
   if @user.update_attributes(user_params)
           # 更新に成功した場合を扱う。
-          flash[:success] = "Profile updated"
+          flash[:success] = "プロフィールが更新されました"
           redirect_to @user
         else
           render "edit"
