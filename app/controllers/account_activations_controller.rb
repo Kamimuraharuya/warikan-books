@@ -7,6 +7,7 @@ def edit
       log_in user
       flash[:success] = "アカウントが作成されました！"
       redirect_to user
+      #rememberで覚えさせたい
     else
       flash[:danger] = "期限の切れたリンクです！もう一度登録し直してください"
       redirect_to root_url
