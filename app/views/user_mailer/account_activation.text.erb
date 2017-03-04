@@ -1,5 +1,4 @@
-Hi <%= @user.name %>,
+<%= @user.name %>様
 
-Welcome to the Sample App! Click on the link below to activate your account:
-
+登録はまだ完了していません。下のリンクをクリックするとユーザー登録が完了します
 <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

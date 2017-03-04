@@ -10,8 +10,8 @@
 <%= render "shared/about" %>
 
 <div class="center jumbotron">
-  <h1>感動を、ワリカン</h1>
-  <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
+	<h1>感動を、ワリカン</h1>
+	<%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
 </div>
 </div>
 <% else %>
@@ -24,10 +24,10 @@
 
 
 <div class="center jumbotron">
-  <h1>本を探す</h1>
-  <%= link_to "本を探す", microposts_path, class: "btn btn-lg btn-primary" %>
+	<h1>本を探す</h1>
+	<%= link_to "本を探す", microposts_path, class: "btn btn-lg btn-primary" %>
 </div>
 <% end %>
-<%= render "shared/about" %>
+<strong><%= link_to "もう一度説明を読む", about_path %></strong>
 
 

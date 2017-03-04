@@ -1,5 +1,6 @@
 <li id="<%= micropost.id %>">
-	<h><%= image_tag micropost.user.image.url  %></h>
+
+	<h><%= image_tag micropost.user.image.url%></h>
 	<span class="user"><%= link_to micropost.user.name, micropost.user %></span>
 	<span>
 		<div class="table-responsive">
@@ -99,7 +100,12 @@
 
 
 	<% else %><%#  メンバー揃っていたら %>
-
+	<div class="panel-body"><span>
+		<%= image_tag micropost.user.image.url  %>
+		<% micropost.likes.each do |like| %>
+		<%= image_tag like.user.image.url  %>
+		<% end %>
+	</div>
 	<div class="panel panel-success">
 		<div class="panel-heading">
 			<h3 class="panel-title">終了しました！！</h3>

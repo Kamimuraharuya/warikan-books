@@ -33,7 +33,8 @@ def create
  @user = User.new(user_params)
  if @user.save
   UserMailer.account_activation(@user).deliver_now
-  flash[:info] = "Please check your email to activate your account."
+  flash[:info] = "メールが送信されました。添付されたURLからユーザー登録を行っていください。
+  （メールは約2分以内に届きます）"
   redirect_to root_url
 else
   render "new"
@@ -50,6 +51,7 @@ def update
         end
       end
       
+
 
       def correct_user
         @user = User.find(params[:id])

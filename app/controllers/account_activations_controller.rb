@@ -5,10 +5,10 @@ def edit
     if user && !user.activated? && user.authenticated?(:activation, params[:id])
       user.activate
       log_in user
-      flash[:success] = "Account activated!"
+      flash[:success] = "アカウントが作成されました！"
       redirect_to user
     else
-      flash[:danger] = "Invalid activation link"
+      flash[:danger] = "期限の切れたリンクです！もう一度登録し直してください"
       redirect_to root_url
     end
   end

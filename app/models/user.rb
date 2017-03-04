@@ -14,6 +14,7 @@ class User < ApplicationRecord
 	uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :image, presence: true  
   validate :image_size
 
   

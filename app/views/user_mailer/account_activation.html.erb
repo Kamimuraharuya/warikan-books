@@ -1,11 +1,10 @@
-<h1>Sample App</h1>
+<h1>ワリカンbooks</h1>
 
-<p>Hi <%= @user.name %>,</p>
+<p><%= @user.name %>様</p>
 
 <p>
-Welcome to the Sample App! Click on the link below to activate your account:
-</p>
+登録はまだ完了していません。下のリンクをクリックするとユーザー登録が完了します</p>
 
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+<%= link_to "登録", edit_account_activation_url(@user.activation_token,
                                                     email: @user.email) %>
 

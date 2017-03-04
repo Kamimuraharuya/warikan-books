@@ -1,7 +1,6 @@
-  <ol class="microposts">
-   <%= render @micropost %>	
- </ol>
- <% unless @micropost.person_number.to_i  == @micropost.likes_count.to_i + 1 %>
+<br>
+<br>
+  <% unless @micropost.person_number.to_i  == @micropost.likes_count.to_i + 1 %>
 
  <div class="panel panel-primary">
   <div class="panel-heading">
@@ -85,3 +84,6 @@
      </div>
    </div>
    <% end %>
+   <ol class="microposts">
+   <%= render @micropost %> 
+ </ol>

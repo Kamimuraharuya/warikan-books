@@ -65,6 +65,25 @@ ActiveRecord::Schema.define(version: 20170302090821) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
   end
 
+  create_table "social_profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "email"
+    t.string   "url"
+    t.string   "image_url"
+    t.string   "description"
+    t.text     "other"
+    t.text     "credentials"
+    t.text     "raw_info"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["provider", "uid"], name: "index_social_profiles_on_provider_and_uid", unique: true, using: :btree
+    t.index ["user_id"], name: "index_social_profiles_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -84,4 +103,5 @@ ActiveRecord::Schema.define(version: 20170302090821) do
 
   add_foreign_key "messages", "chats"
   add_foreign_key "microposts", "users"
+  add_foreign_key "social_profiles", "users"
 end

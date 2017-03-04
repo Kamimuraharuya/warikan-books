@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 	post "login" => "sessions#create"
 	delete "logout" => "sessions#destroy"
 
-	get "signup" => "users#new"
 
 	post "signup" => "users#create" #エラー時に良くわからん
 	get "signup" => "users#new"
@@ -23,7 +22,7 @@ Rails.application.routes.draw do
 	resources :microposts    
 	resources :microposts do
 
-	resources :likes, only: [:create, :destroy]
-end
+		resources :likes, only: [:create, :destroy]
+	end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
