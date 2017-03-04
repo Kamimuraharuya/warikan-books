@@ -6,6 +6,8 @@ gem 'rails_12factor', group: :production
 gem "ransack"
 gem 'kaminari'
 
+gem 'cloudinary'
+
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'     
