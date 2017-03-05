@@ -92,9 +92,10 @@
 		</span>
 		<% else %><%# ポストの持ち主ならば　%>
 
-		<%= link_to "ポストを削除", micropost, method: :delete,
+		<%= link_to "企画を編集", edit_micropost_path(id: micropost.id),data: { confirm: "You sure?" }, class: "btn btn-info" if micropost.likes_count.to_i == 0 %>	
+		<%= link_to "企画を削除", micropost, method: :delete,
 		data: { confirm: "You sure?" }, class: "btn btn-danger"  if micropost.likes_count.to_i == 0 %>
-		<strong color="red">*メンバーが参加した後は削除できません*</strong>
+		<strong color="red">*メンバーが参加した後は編集、削除できません*</strong>
 		<% end %>
 	</span>
 

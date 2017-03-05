@@ -3,18 +3,34 @@ class MicropostsController < ApplicationController
 	before_action :logged_in_user, only:[:create, :destroy]
 	before_action :correct_user,   only: :destroy
 
-
-	def show
+	def update
 		@micropost = Micropost.find(params[:id])
-		@likes = Like.where(micropost_id: params[:id])
-	end 
+  if @micropost.update(micropost_params)#Facebookやとパスワードがない
+          # 更新に成功した場合を扱う。
+          flash[:success] = "企画が更新されました"
+          redirect_to @micropost
+      else
+      	render "edit"
+      end
+  end
+  
+  def edit
+  	@micropost = Micropost.find(params[:id])
+  	@likes = Like.where(micropost_id: params[:id])
+  end
 
-	def index
-		@likes = Like.where(micropost_id: params[:id])
-		@q = Micropost.ransack(params[:q])
-		@microposts = @q.result.paginate(page: params[:page])
-	end
-	def tatiage
+
+  def show
+  	@micropost = Micropost.find(params[:id])
+  	@likes = Like.where(micropost_id: params[:id])
+  end 
+
+  def index
+  	@likes = Like.where(micropost_id: params[:id])
+  	@q = Micropost.ransack(params[:q])
+  	@microposts = @q.result.paginate(page: params[:page])
+  end
+  def tatiage
 		@micropost = current_user.microposts.build#(micropost_params)
 	end
 
@@ -31,8 +47,8 @@ class MicropostsController < ApplicationController
 
 	def destroy
 		@micropost.destroy
-		flash[:success] = "Micropost deleted"
-		redirect_to request.referrer || root_url
+		flash[:success] = "削除されました"
+		redirect_to root_url
 	end
 
 

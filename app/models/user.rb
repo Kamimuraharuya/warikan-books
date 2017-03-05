@@ -7,9 +7,9 @@ class User < ApplicationRecord
   before_create :create_activation_digest
 
 	#2個目のselfは省略可能
-	validates :name, presence: true, length: {maximum: 200}
+	validates :name, presence: true, length: {maximum: 20}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	validates :email, presence: true, length: {maximum: 250},
+	validates :email, presence: true, length: {maximum: 50},
 	format: { with: VALID_EMAIL_REGEX },
 	uniqueness: { case_sensitive: false }
 	has_secure_password
@@ -33,7 +33,7 @@ class User < ApplicationRecord
         user.oauth_expires_at = Time.at(auth.credentials.expires_at)
         #outh_tokenについてはわからない。多分向こうで使ってくれる
         #outh_secretはいらないの？
-        user#なんのuser?これ
+        #なんのuser?これ
       end
 
 
