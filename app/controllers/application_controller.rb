@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
         if current_user.major.empty?
             store_location
             flash[:danger] = "ユーザー情報を入力してください"
-            redirect_to edit_user_path(params[:id])
+            redirect_to edit_user_path(id: current_user.id)
         end
     end
 end
