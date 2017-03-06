@@ -3,25 +3,36 @@
     <%= link_to "ワリカンbooks", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   root_path %></li>
+        <li><%= link_to "ホーム画面",   root_path %></li>
         
         <% if logged_in? %>
-        <li><%= link_to "Users", users_path %></li>
+        <%#= link_to "ユーザー一覧", users_path %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Account <b class="caret"></b>
+            アカウント <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to "Profile", current_user %></li>
-            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <li><%= link_to "プロフィール設定", edit_user_path(current_user) %></li>
             <li class="divider"></li>
             <li>  
-              <%= link_to "Log out", logout_path,method: :delete %>
+              <%= link_to "ログアウト", logout_path,method: :delete ,data: { confirm: "You sure?" }%>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            本を探す <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "本を検索", microposts_path %></li>
+            <li class="divider"></li>
+            <li>  
+            <%= link_to "企画を立ち上げる", microposts_tatiage_path %>
             </li>
           </ul>
         </li>
         <% else %>
-        <li><%= link_to "Log in", login_path %></li>
+        <li><%= link_to "ログイン", login_path %></li>
         <% end %>
       </ul>
     </nav>

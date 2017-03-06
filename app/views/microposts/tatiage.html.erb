@@ -2,9 +2,7 @@
 
 <div class="row">
 	<aside class="col-md-4">
-		<section class="user_info">
-			<%= render 'shared/user_info' %>
-		</section>
+		
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">満足のいく企画がなければ、自分でワリカン企画を立ち上げましょう</h3>
@@ -48,7 +46,9 @@
 				</div>
 			</div>
 		</div>
-
+		<div>
+			<%= link_to "本を検索する", microposts_path, class: "btn btn-info" %>
+		</div> 
 		<section class="micropost_form">
 			<%= render 'shared/micropost_form' %>
 		</section>

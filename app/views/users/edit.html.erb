@@ -21,6 +21,9 @@
 		<%= f.label :favorite_book,"人生の一冊" %>
 		<%= f.text_field :favorite_book, class: 'form-control' %>
 
+        <%= f.label :content,"プロフィール、読書遍歴等" %>（詳しく書いた方が、共通の趣味、読書遍歴を持ったワリカンメンバーが集まりやすくなります！！）＜１４０字以内、ツイッターぐらい＞
+		<%= f.text_area :content, class: 'form-control' %>
+
 		<%= label :image, "プロフィール画像" %>
 		<%= f.file_field :image,accept: 'image/jpeg,image/gif,image/png', class: 'form-control'  %>
 		　

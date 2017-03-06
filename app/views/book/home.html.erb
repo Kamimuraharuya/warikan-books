@@ -1,6 +1,7 @@
 <% provide(:title, "Home") %>
-
+<div class="row">
 <% unless logged_in? %>
+ <div class="col-xs-6 col-md-4">
 <div class="center jumbotron">
 	<h1>ワリカンbooks</h1>
 	<%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
@@ -8,7 +9,7 @@
 </div>
 
 <%= render "shared/about" %>
-
+ <div class="col-xs-6 col-md-4">
 <div class="center jumbotron">
 	<h1>感動を、ワリカン</h1>
 	<%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>

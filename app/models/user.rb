@@ -17,6 +17,7 @@ class User < ApplicationRecord
   validates :image, presence: true  
   validate :image_size
   validates :password, presence: false, on: :facebook_login
+  validates :content, presence: true, length: { maximum: 140 }
 
   def self.from_omniauth(auth)
         # emailの提供は必須とする

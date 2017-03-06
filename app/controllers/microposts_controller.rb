@@ -1,7 +1,9 @@
 class MicropostsController < ApplicationController
 
-	before_action :logged_in_user, only:[:create, :destroy]
+	before_action :logged_in_user, only:[:create, :destroy, :tatiage]
 	before_action :correct_user,   only: :destroy
+
+    before_action :edit_forcing, only: :tatiage
 
 	def update
 		@micropost = Micropost.find(params[:id])

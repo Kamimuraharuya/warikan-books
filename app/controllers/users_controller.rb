@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:destroy, :index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-
+  before_action :edit_forcing, only: [:destroy, :index, :show]
   
   def destroy
     User.find(params[:id]).destroy
@@ -23,10 +23,16 @@ def new
  @user = User.new
 end
 
-def show 
- @user = User.find(params[:id])
- @microposts = @user.microposts.paginate(page: params[:page])
 
+def show 
+  @user = User.find(params[:id])
+  microposts = @user.microposts
+  microposts_id = []
+  microposts_id = microposts.pluck(:id)
+  likes = @user.likes
+  likes_id = likes.pluck(:micropost_id)
+  microposts_id << likes_id 
+  @microposts = Micropost.where(id: microposts_id).paginate(page: params[:page])
 end
 
 def create 
@@ -56,7 +62,8 @@ end
 end
 
 def update
-  if @user.update_attributes(user_params)#Facebookやとパスワードがない
+  @user = User.find(params[:id])
+  if @user.update(update_params)#Facebookやとパスワードがない
           # 更新に成功した場合を扱う。
           flash[:success] = "プロフィールが更新されました"
           redirect_to @user
@@ -73,6 +80,11 @@ def update
       end
 
       private
+
+      def update_params
+        params.require(:user).permit(:name, :email, :password,
+         :password_confirmation,:image,:university,:major,:favorite_book,:content)
+      end  
 
       def user_params
        params.require(:user).permit(:name, :email, :password,

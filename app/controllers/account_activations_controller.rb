@@ -6,7 +6,7 @@ def edit
       user.activate
       log_in user
       flash[:success] = "アカウントが作成されました！"
-      redirect_to user
+      redirect_to edit_user_path(params[:id])
       #rememberで覚えさせたい
     else
       flash[:danger] = "期限の切れたリンクです！もう一度登録し直してください"
