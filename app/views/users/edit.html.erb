@@ -1,33 +1,31 @@
 <% provide(:title, "Edit user") %>
 <h1>プロフィールを設定してください</h1>
 
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<%= form_for(@user,html: { multipart: true }) do |f| %>
-		<%= render 'shared/error_messages', object: f.object%>
 
-		<%= f.label :name,"氏名（フルネーム）" %>
-		<%= f.text_field :name, class: 'form-control' %>
+<%= form_for(@user,html: { multipart: true }) do |f| %>
+<%= render 'shared/error_messages', object: f.object%>
 
-		<%= f.label :email,"メールアドレス(正確に入力してください)" %>
-		<%= f.email_field :email, class: 'form-control' %>
+<%= f.label :name,"氏名（フルネーム）" %>
+<%= f.text_field :name, class: 'form-control' %>
 
-		<%= f.label :university,"大学名" %>
-		<%= f.text_field :university, class: 'form-control' %>
+<%= f.label :email,"メールアドレス(正確に入力してください)" %>
+<%= f.email_field :email, class: 'form-control' %>
 
-		<%= f.label :majojr,"学部、専攻" %>
-		<%= f.text_field :major, class: 'form-control' %>
+<%= f.label :university,"大学名" %>
+<%= f.text_field :university, class: 'form-control' %>
 
-		<%= f.label :favorite_book,"人生の一冊" %>
-		<%= f.text_field :favorite_book, class: 'form-control' %>
+<%= f.label :majojr,"学部、専攻" %>
+<%= f.text_field :major, class: 'form-control' %>
 
-        <%= f.label :content,"プロフィール、読書遍歴等" %>（詳しく書いた方が、共通の趣味、読書遍歴を持ったワリカンメンバーが集まりやすくなります！！）＜１４０字以内、ツイッターぐらい＞
-		<%= f.text_area :content, class: 'form-control' %>
+<%= f.label :favorite_book,"人生の一冊" %>
+<%= f.text_field :favorite_book, class: 'form-control' %>
 
-		<%= label :image, "プロフィール画像" %>
-		<%= f.file_field :image,accept: 'image/jpeg,image/gif,image/png', class: 'form-control'  %>
-		　
-		<%= f.submit "変更を保存する", class: "btn btn-primary", data: { confirm: "You sure?" }  %>
-		<% end %>
-	</div>
-</div>
+<%= f.label :content,"プロフィール、読書遍歴等" %>（詳しく書いた方が、共通の趣味、読書遍歴を持ったワリカンメンバーが集まりやすくなります！！）＜１４０字以内、ツイッターぐらい＞
+<%= f.text_area :content, class: 'form-control' %>
+
+<%= label :image, "プロフィール画像" %>
+<%= f.file_field :image,accept: 'image/jpeg,image/gif,image/png', class: 'form-control'  %>
+　
+<%= f.submit "変更を保存する", class: "btn btn-primary", data: { confirm: "You sure?" }  %>
+<% end %>
+

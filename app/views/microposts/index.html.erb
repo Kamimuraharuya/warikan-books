@@ -1,9 +1,9 @@
-<div class="panel panel-primary">
+<div class="panel panel-success">
 	<div class="panel-heading">
 		<h3 class="panel-title">ワリカンの仕方</h3>
 	</div>
 	<br>
-	<div class="panel panel-success">
+	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">ワリカン企画を検索</h3>
 		</div>
@@ -11,7 +11,7 @@
 			大学名、本の名前を入力してください。
 			大学名だけを入力して、面白そうな本を探すのもありです  </div>
 		</div>
-		<div class="panel panel-success">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">条件を見て、面白そうな本、企画を選ぶ</h3>
 			</div>
@@ -23,7 +23,7 @@
 		</div>
 
 		
-		<div class="panel panel-success">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">回ってくる順番は「企画者＝＞参加者（参加した順）</h3>
 			</div>
@@ -40,65 +40,54 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h3 class="panel-title">満足のいく企画がなければ、自分でワリカン企画を立ち上げましょう</h3>
-		</div>
-		<div class="panel-body">
-		<%= link_to "企画を立ち上げる", microposts_tatiage_path, class: "btn btn-info"%>
-		</div>
-	</div>
 
-
-	<div class="panel panel-default">
+	<div class="panel panel-success">
 		<div class="panel-heading">
 			<div class="panel-title">検索</div>
 		</div>
 
 		<div class="panel-body">
 			<%= search_form_for(@q, method: :get) do |f| %>	
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="form-group">
-						<%= f.label :area_cont,"大学名、キャンパス名などを入力してください" %>
-						<%= f.text_field :area_cont, class: "form-control", placeholder: "部分一致" %>
-					</div>
-				</div>
-
-				<div class="col-sm-6">
-					<div class="form-group">
-						<%= f.label :bookname_cont, "本の名前を入力してください（任意）" %>
-						<%= f.text_field :bookname_cont, class: "form-control", placeholder: "部分一致検索" %>
-					</div>
-				</div>
-
-				<div class="col-sm-6">
-					<div class="form-group">					
-						<%= f.submit '検索', class: "btn btn-primary" %>
-						<%= link_to 'クリア', url_for, class: "btn btn-default" %>
-					</div>
-				</div>
-				<% end %>
+			<div class="form-group">
+				<%= f.label :area_cont,"大学名、キャンパス名などを入力してください" %>
+				<%= f.text_field :area_cont, class: "form-control", placeholder: "部分一致" %>
 			</div>
+			
+
+			<div class="form-group">
+				<%= f.label :bookname_cont, "本の名前を入力してください（任意）" %>
+				<%= f.text_field :bookname_cont, class: "form-control", placeholder: "部分一致検索" %>
+			</div>
+
+
+			<div class="form-group">					
+				<%= f.submit '検索', class: "btn btn-primary" %>
+				<%= link_to 'クリア', url_for, class: "btn btn-default" %>
+			</div>
+
+			<% end %>
 		</div>
 	</div>
 
 
 
-	<div class="row">
-		<div class="col-sm-6">
-			<div class="form-group">
-				<ol class="microposts">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h3 class="panel-title">企画一覧（検索結果）</h3>
-						</div>
-					</div>
-					<%= render @microposts %>
-				</ol>
-				<%= will_paginate @microposts %>
+
+
+	<div class="form-group">
+		<ol class="microposts">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">企画一覧（検索結果）</h3>
+				</div>
 			</div>
-		</div>
+			<%= render @microposts %>
+		</ol>
+		<%= will_paginate @microposts %>
+	</div>
+	
+	<div class="center jumbotron">
+		<h1>求める企画、本がなければ</h1>
+		<%= link_to "自分で企画を立てる", microposts_tatiage_path, class: "btn btn-lg btn-primary" %>
 	</div>
 
 	　

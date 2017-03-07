@@ -4,57 +4,55 @@
 
 <%= form_for(@micropost, html: { multipart: true }) do |f| %>
 
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<%= render 'shared/error_messages', object: f.object %>
-		<div class="panel-heading">
-			<h3 class="panel-title"></h3>
-		</div>
-		<h>
-			本の名前(省略名でも構いませんが、できるだけ正確に)
-		</h>
-		<%= f.text_field :bookname, class: 'form-control' %>
-		<h>
-			本の写真（任意、有ったほうがメンバーに本の魅力が伝わります！）
-		</h>
-		<span class="picture">
-			<%= f.file_field :picture,accept: 'image/jpg,image/jpeg,image/gif,image/png'  %>
-		</span>
-		<%# 選択した画像がわかるように、また、エラー出たあとにも保持されるように  %>
-		<h>
-			場所、大学名（キャンパス名まで入力することを推奨します）
-		</h>
-		<div><%= f.text_field :area, size: 20, maxlength:30, class: 'form-control' %></div>
-		<h>
-			ワリカン人数（自分も含めた人数）
-		</h>
-		<div><%= f.select :person_number, [2,3,4,5], {include_blank: "選択してください"}%></div>
-		<h>
-			本の購入時の金額（半角、正しく入力しないとエラーが出ます）
-		</h>
-		<div><%= f.number_field :bookprice, min: 100, max: 9999 %></div>
-		<h>
-			一人当たりの読書日数
-		</h>
-		<div><%= f.select :day, [1,2,3,4,5,6,7], {include_blank: "選択してください"} %></div>
 
-		<h>
-			書き込み、ライン引き
-		</h>
-		<%= f.select :kakikomi, ["書き込みなし","ライン","メモあり","テーマ付き書き込み"], {include_blank: "選択してください"} %>
-
-
-		<div class="field">
-			<div>本の状態、書き込みテーマ、なぜこの本を読みたいか、など</div>
-			<div><strong>
-				**ここでワリカンメンバーが集まるかが決まります！！この企画の良さをアピールしましょう！！**
-			</strong></div>
-			<%= f.text_area :content, placeholder: "テーマ、本の状態など" %>
-		</div>
-		<%= f.submit "Post", data: { confirm: "You sure?" } , class: "btn btn-primary"%>
-	</div>
-</aside>
+<%= render 'shared/error_messages', object: f.object %>
+<div class="panel-heading">
+	<h3 class="panel-title"></h3>
 </div>
+<h>
+	本の名前(省略名でも構いませんが、できるだけ正確に)
+</h>
+<%= f.text_field :bookname, class: 'form-control' %>
+<h>
+	本の写真（任意、有ったほうがメンバーに本の魅力が伝わります！）
+</h>
+<span class="picture">
+	<%= f.file_field :picture,accept: 'image/jpg,image/jpeg,image/gif,image/png'  %>
+</span>
+<%# 選択した画像がわかるように、また、エラー出たあとにも保持されるように  %>
+<h>
+	場所、大学名（キャンパス名まで入力することを推奨します）
+</h>
+<div><%= f.text_field :area, size: 20, maxlength:30, class: 'form-control' %></div>
+<h>
+	ワリカン人数（自分も含めた人数）
+</h>
+<div><%= f.select :person_number, [2,3,4,5], {include_blank: "選択してください"}%></div>
+<h>
+	本の購入時の金額（半角、正しく入力しないとエラーが出ます）
+</h>
+<div><%= f.number_field :bookprice, min: 100, max: 9999 %></div>
+<h>
+	一人当たりの読書日数
+</h>
+<div><%= f.select :day, [1,2,3,4,5,6,7], {include_blank: "選択してください"} %></div>
+
+<h>
+	書き込み、ライン引き
+</h>
+<%= f.select :kakikomi, ["書き込みなし","ライン","メモあり","テーマ付き書き込み"], {include_blank: "選択してください"} %>
+
+
+<div class="field">
+	<div>本の状態、書き込みテーマ、なぜこの本を読みたいか、など</div>
+	<div><strong>
+		**ここでワリカンメンバーが集まるかが決まります！！この企画の良さをアピールしましょう！！**
+	</strong></div>
+	<%= f.text_area :content, placeholder: "テーマ、本の状態など" %>
+</div>
+<%= f.submit "Post", data: { confirm: "You sure?" } , class: "btn btn-primary"%>
+</div>
+
 <% end %>
 
 <script type="text/javascript">
