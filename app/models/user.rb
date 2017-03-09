@@ -13,11 +13,11 @@ class User < ApplicationRecord
 	format: { with: VALID_EMAIL_REGEX },
 	uniqueness: { case_sensitive: false }
 	has_secure_password
-	#validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :image, presence: true  
   validate :image_size
   validates :password, presence: false, on: :facebook_login
-  #validates :content, :major, :university, :favorite_book, presence: true, length: { maximum: 140 }
+  validates :content, :major, :university, :favorite_book, presence: true, length: { maximum: 140 }
 
   def self.from_omniauth(auth)
         # emailの提供は必須とする

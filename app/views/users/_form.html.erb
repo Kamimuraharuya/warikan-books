@@ -1,44 +1,43 @@
 <%= form_for(@user,html: { multipart: true }) do |f| %>
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8&appId=245873289155449";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
 
 
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3 class="panel-title">登録したメールアドレスにユーザー登録用メールを送ります。添付されたURLからユーザー登録を行っていください。
-			（メールは約2分以内に届きます）</h3>
-		</div>
-		<div class="panel-body">
-			すでに登録しているユーザーは  <%= link_to "ログイン", login_path %>
-		</div>
-	</div>
-	<%= render 'shared/error_messages', object: f.object%>
+<%# <div class="panel panel-primary"><div class="panel-heading"><h3 class="panel-title">登録したメールアドレスにユーザー登録用メールを送ります。添付されたURLからユーザー登録を行っていください。
+（メールは約2分以内に届きます）</h3></div>%>
+<div class="panel-body">すでに登録しているユーザーは  <%= link_to "ログイン", login_path %> </div>
+<%= render 'shared/error_messages', object: f.object%>
 
-	<%= f.label :name,"氏名（フルネーム）" %>
-	<%= f.text_field :name, class: 'form-control' %>
+<%= f.label :name,"氏名（フルネーム）" %>
+<%= f.text_field :name, class: 'form-control' %>
 
-	<%= f.label :email,"メールアドレス(正確に入力してください)" %>
-	<%= f.email_field :email, class: 'form-control' %>
 
-	<%#= メールの確認フォームを入れたい　%>
+<%= f.label :university,"大学名" %>
+<%= f.text_field :university, class: 'form-control' %>
 
-	<%= f.label :password,"パスワード（6文字以上、半角英数字）" %>
-	<%= f.password_field :password, class: 'form-control' %>
+<%= f.label :majojr,"学部、専攻" %>
+<%= f.text_field :major, class: 'form-control' %>
 
-	<%= f.label :password_confirmation, "再確認" %>
-	<%= f.password_field :password_confirmation, class: 'form-control' %>
-	<%= label :image, "プロフィール画像" %>
-	<%= f.file_field :image,accept: 'image/jpeg,image/gif,image/png', class: 'form-control'  %>
-	　
+<%= f.label :favorite_book,"人生の一冊" %>
+<%= f.text_field :favorite_book, class: 'form-control' %>
 
-	<%= f.submit "メールを送信する", class: "btn btn-primary", data: { confirm: "You sure?" }  %>
-	<% end %>
-	
+<%= f.label :content,"プロフィール、読書遍歴等" %>（詳しく書いた方が、共通の趣味、読書遍歴を持ったワリカンメンバーが集まりやすくなります！！）＜１４０字以内、ツイッターぐらい＞
+<%= f.text_area :content, class: 'form-control' %>
+
+<%= f.label :password,"パスワード（6文字以上、半角英数字）" %>
+<%= f.password_field :password, class: 'form-control' %>
+
+<%= f.label :password_confirmation, "再確認" %>
+<%= f.password_field :password_confirmation, class: 'form-control' %>
+<%= label :image, "プロフィール画像" %>
+<%= f.file_field :image,accept: 'image/jpeg,image/gif,image/png', class: 'form-control'  %>
+
+<%= f.label :email,"メールアドレス(正確に入力してください)" %>
+<%= f.email_field :email, class: 'form-control' %>
+
+<%#= メールの確認フォームを入れたい　%>
+
+　
+
+<%= f.submit "確定する", class: "btn btn-primary", data: { confirm: "You sure?" }  %>
+<% end %>
+

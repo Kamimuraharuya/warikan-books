@@ -88,7 +88,7 @@ def update
 
       def user_params
        params.require(:user).permit(:name, :email, :password,
-         :password_confirmation,:image)  
+         :password_confirmation,:content, :major, :university, :favorite_book,:image)  
      end 
 
      def admin_user
