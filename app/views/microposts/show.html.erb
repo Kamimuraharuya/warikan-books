@@ -1,17 +1,17 @@
 <br>
 <br>
-  <% unless @micropost.person_number.to_i  == @micropost.likes_count.to_i + 1 %>
+<% unless @micropost.person_number.to_i  == @micropost.likes_count.to_i + 1 %>
 
- <div class="panel panel-primary">
+<div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"><strong>Facebook, Twitterでシェアしてワリカンメンバーを探そう！</strong></h3>
   </div>
 </div>
 
-<table>
-  <%= render "shared/facebook" %>
-  <%= render "shared/twitter" %>		
-</table>
+<ul>
+  <li><%= render "shared/facebook" %></li>
+  <li><%= render "shared/twitter" %></li>		
+</ul>
 <% else %>
 
 <div class="panel panel-primary">
@@ -78,12 +78,13 @@
         <h3 class="panel-title">ワリカンの成立を友達にシェアして、次なるワリカンの布石に！！</h3>
       </div>
       <div class="panel-body">
-       <%= render "shared/facebook" %>
-       <%= render "shared/twitter" %>
-
-     </div>
-   </div>
-   <% end %>
-   <ol class="microposts">
-   <%= render @micropost %> 
- </ol>
+        <ul>
+          <li><%= render "shared/facebook" %></li>
+          <li><%= render "shared/twitter" %></li>   
+        </ul>
+      </div>
+    </div>
+    <% end %>
+    <ol class="microposts">
+     <%= render @micropost %> 
+   </ol>
