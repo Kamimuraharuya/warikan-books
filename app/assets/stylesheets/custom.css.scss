@@ -1,6 +1,41 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+#smart_wrapper{
+display:none;
+}
+#smart_footer{
+display:none;
+}
+/*以下は画像などの表示制御クラス*/
+.pc_img_class{
+display:inline;
+}
+.smart_img_class{
+display:none;
+}
+/*それ以外の表示要素は適当に*/
+
+smart.cssの内容
+#wrapper{
+display:none;
+}
+#footer{
+display:none;
+}
+/*以下は画像などの表示制御クラス*/
+.pc_img_class{
+display:none;
+}
+.smart_img_class{
+display:inline;
+}
+
+/*それ以外の表示要素は適当に*/
+
+
+
+
 body{
 padding-top: 60px;
 }
