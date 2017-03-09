@@ -5,7 +5,7 @@
 	<div class="table-responsive">
 		<table class="table" >
 			<tr>
-				<td><%= image_tag micropost.picture.url if micropost.picture? %></td>
+				<td><h3 class="text-center"><%= image_tag micropost.picture.url if micropost.picture? %></h3></td>
 				<td><%= micropost.bookname %></td>
 			</tr>
 
@@ -50,7 +50,7 @@
 			<% unless micropost.person_number.to_i  == micropost.likes_count.to_i + 1 %>　
 			<br>
 			<br>
-			<div class="panel panel-success">
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<span>
@@ -106,28 +106,28 @@
 					<strong color="red">*メンバーが参加した後は編集、削除できません*</strong>
 					<% end %>
 				</span>
-				<div class="table-responsive">
-					<table class="table" >
-						<tr>
-							<td><h3 class="text-center">企画者</h3></td>
-							<td><div><%= image_tag micropost.user.image.url%>
-							</div>
-							<span class="user"><%= link_to micropost.user.name, micropost.user %></span></td>
-						</tr>
-						<tr>
-							<td>大学・学部・専攻・学年</td>
-							<td><%= micropost.user.university %>  <%= micropost.user.major %></td>
-						</tr>
-						<tr>
-							<td>人生の一冊</td>
-							<td><%= micropost.user.favorite_book %></td>
-						</tr>
-						<tr>
-							<td>プロフィール、読書遍歴</td>
-							<td><%= micropost.user.content %></td>
-						</tr>
-					</table>
-				</div>
+				
+				<table class="table" >
+					<tr>
+						<td><h3 class="text-center">企画者</h3></td>
+						<td><div><%= image_tag micropost.user.image.url%>
+						</div>
+						<span class="user"><%= link_to micropost.user.name, micropost.user %></span></td>
+					</tr>
+					<tr>
+						<td>大学・学部・専攻・学年</td>
+						<td><%= micropost.user.university %>  <%= micropost.user.major %></td>
+					</tr>
+					<tr>
+						<td>人生の一冊</td>
+						<td><%= micropost.user.favorite_book %></td>
+					</tr>
+					<tr>
+						<td>プロフィール、読書遍歴</td>
+						<td><%= micropost.user.content %></td>
+					</tr>
+				</table>
+				
 
 
 				<% else %><%#  メンバー揃っていたら %>
