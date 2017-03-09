@@ -17,7 +17,7 @@ private
 # アップロードされた画像のサイズをバリデーションする
     def picture_size
       if picture.size > 5.megabytes
-        errors.add(:picture, "should be less than 5MB")
+        errors.add(:picture, "写真の容量が大きすぎます")
       end
     end    
 
