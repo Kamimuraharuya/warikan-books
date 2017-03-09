@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
 
   def account_activation(user)
     @user = user
-    mail to: user.email, subject: "アカウント登録だよ"
+    mail to: user.email, subject: "アカウント登録 ワリカンBOOKS"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -20,6 +20,6 @@ class UserMailer < ApplicationMailer
   #
   def password_reset(user)
 @user = user
-    mail to: user.email, subject: "Password reset"
+    mail to: user.email, subject: "パスワードリセット　ワリカンBOOKS"
   end
 end

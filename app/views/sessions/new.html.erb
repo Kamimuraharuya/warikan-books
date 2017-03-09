@@ -1,6 +1,11 @@
 <% provide(:title, "Log in") %>
 <h1>ログイン</h1>
 
+<div>
+	<p>新しいユーザーの方はこちら<%= link_to "Sign upしてください", signup_path, class: "btn btn-primary" %></p>
+
+</div>
+<br>
 
 <%= form_for(:session, url: login_path) do |f| %>
 
@@ -19,5 +24,4 @@
 <%= f.submit "ログイン", class: "btn btn-primary" %>
 <% end %>
 
-<p>新しいユーザーの方はこちら<%= link_to "Sign upしてください", signup_path %></p>
 

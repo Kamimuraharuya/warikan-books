@@ -6,13 +6,13 @@
 </h1>
 
 
-<% x = 0 %>
-<% y = @micropost.person_number.to_i %>
-<% while x <= y do %>
+<%# x = 0 %>
+<%# y = @micropost.person_number.to_i %>
+<%# while x < y do %>
 <td color="red">
-	<%=	x += 1 %> 
+	<%#=	x += 1 %> 
 </td>
-<% end %>
+<%# end %>
 
 <div class="table-responsive">
 	<table class="table" >
@@ -26,7 +26,8 @@
 </table>
 の順で回してください
 </div>
-
+<br>
+<br>
 
 <div>
 	<% x = @micropost.person_number.to_i %>
@@ -39,14 +40,15 @@
 		<%= @micropost.bookprice.to_i *  y / x %>円を渡してください</li>
 		<% end %>
 	</div>
-
+<br>
+<br>
 	<div>
-		詳しくは<%= link_to "企画のページ", micropost_url(id: @micropost.id) %>をご覧ください。
+		詳しくは<h1><%= link_to "企画のページ", micropost_url(id: @micropost.id) %></h1>をご覧ください。
 	</div>
 
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-			<h3 class="panel-title">現在、ユーザー方の意見を聞きながらサービスを改良しようと努めています！！</h3>
+			<h3 class="panel-title">よりよい読書体験を提供するため、ご意見を聞かせてください！</h3>
 		</div>
 		<div class="panel-body">
 		不便な面、改善した方がいいと思われるところ、ここが面白い！というところがあれば、このメールアドレスにメールで教えてくだされば、京都大学内であれば、下さるアドバイスの質に応じて、いつかパンをおごらせていただきます！！ご協力ください！！

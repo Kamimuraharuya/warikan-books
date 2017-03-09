@@ -11,7 +11,7 @@ class NoticeMailer < ApplicationMailer
     @emails = emails #文字列のアドレス
     @micropost = micropost
     @users = users
-    mail to: user.email, subject: "ワリカン成立"
+    mail to: user.email, subject: "ワリカンが成立しました！！"
   end
 end
 
