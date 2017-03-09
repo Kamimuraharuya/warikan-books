@@ -2,136 +2,62 @@
 	<%# ユーザーはもう少し小さめに表示して、ポストとの別れめをはっきりさせ、見やすくしたい %>
 
 	
-	<div class="table-responsive">
-		<table class="table" >
-			<tr>
-				<td><%= image_tag micropost.picture.url if micropost.picture? %></td>
-				<td><h3 class="text-center"><%= micropost.bookname %></h3></td>
-			</tr>
+	<%# <div class="table-responsive"> %>
+	<table class="table" >
+		<tr>
+			<td><%= image_tag micropost.picture.url if micropost.picture? %></td>
+			<td><h3 class="text-center"><%= micropost.bookname %></h3></td>
+		</tr>
 
-			<tr>
-				<td>受け渡し場所（大学名、最寄駅、地域名など）</td>
-				<td><%= micropost.area %></td>
+		<tr>
+			<td>受け渡し場所（大学名、最寄駅、地域名など）</td>
+			<td><%= micropost.area %></td>
+		</tr>
+		<tr>
+			<td>ワリカン人数</td>
+			<td><%= micropost.person_number %>人</td>
+		</tr>
+		<tr>
+			<td>一冊の値段</td>
+			<td><%= micropost.bookprice %>円</td>
+		</tr>
+		<tr>
+			<td>一人当たりの値段</td>
+			<span><div><% result = micropost.bookprice.to_i/micropost.person_number.to_i if micropost.person_number.to_i > 0 %></div>
+				<td><%= result %>円</td></span>
 			</tr>
 			<tr>
-				<td>ワリカン人数</td>
-				<td><%= micropost.person_number %>人</td>
+				<td>一人当たりの日数</td>
+				<td><%= micropost.day %>日</td>
 			</tr>
 			<tr>
-				<td>一冊の値段</td>
-				<td><%= micropost.bookprice %>円</td>
+				<td>書きこみ</td>
+				<td><%= micropost.kakikomi %></td>
 			</tr>
-			<tr>
-				<td>一人当たりの値段</td>
-				<span><div><% result = micropost.bookprice.to_i/micropost.person_number.to_i if micropost.person_number.to_i > 0 %></div>
-					<td><%= result %>円</td></span>
-				</tr>
-				<tr>
-					<td>一人当たりの日数</td>
-					<td><%= micropost.day %>日</td>
-				</tr>
-				<tr>
-					<td>書きこみ</td>
-					<td><%= micropost.kakikomi %></td>
-				</tr>
-			</table>
+		</table>
+	</div>
 
 
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">書きこみテーマ、その他本の状態など</h3>
+		</div>
+		<div class="panel-body"><%= micropost.content if micropost.content? %>
+		</div>
+		<%#</div> %>
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">書きこみテーマ、その他本の状態など</h3>
+
+	<% unless micropost.person_number.to_i  == micropost.likes_count.to_i + 1 %>　
+	<br>
+	<br>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<span>
+					<div><% result =micropost.person_number.to_i - micropost.likes_count.to_i - 1%>
+					</div>
+					ワリカン成立まで、あと<%= result %>人！</span></h3>
 				</div>
-				<div class="panel-body"><%= micropost.content if micropost.content? %>
-				</div>
-			</div>
-
-
-			<% unless micropost.person_number.to_i  == micropost.likes_count.to_i + 1 %>　
-			<br>
-			<br>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<span>
-							<div><% result =micropost.person_number.to_i - micropost.likes_count.to_i - 1%>
-							</div>
-							ワリカン成立まで、あと<%= result %>人！</span></h3>
-						</div>
-						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table" >			
-									<tr>
-										<th><%= image_tag micropost.user.image.url  %></th>
-										<% micropost.likes.each do |like| %>
-										<th><%= image_tag like.user.image.url  %></th>
-										<% end %>
-									</tr>
-									<tr>
-										<th><%= link_to micropost.user.name, user_path(id: micropost.user.id) %></th> 	
-										<% micropost.likes.each do |like| %>
-										<th><%= link_to like.user.name, like.user %></th> 
-										<% end %></tr>
-									</table>
-								</div>
-							</div>
-						</div>
-
-
-						<% unless current_user?(micropost.user) %>
-
-						<% if logged_in? %>
-
-						<% if micropost.like_user(current_user.id) %><%# いいねしてるか否か　%>
-						<div class="panel panel-info">
-							<div class="panel-heading">
-								<h3 class="panel-title">あなたは参加しています！人数が集まるまで待ってください！</h3>
-							</div>
-						</div>
-						<% else %><%# いいねしてるか否か　%>
-						<%= button_to micropost_likes_path(micropost), class: "btn btn-primary", data: { confirm: "You sure?" } do %>
-						<%= "参加する" %>
-						<% end %><%# do %>
-						<% end %><%# いいねしてるか否か　%>
-
-						<% else %><%# ログインしてなかったら　%>
-						<%= button_to "参加するにはサインアップしてください", signup_path,  class: "btn btn-primary"%>	
-						<% end %><%# ログインしてるか　%>
-					</span>
-					<% else %><%# ポストの持ち主ならば　%>
-
-					<%= link_to "企画を編集", edit_micropost_path(id: micropost.id), class: "btn btn-info" if micropost.likes_count.to_i == 0 %>	
-					<%= link_to "企画を削除", micropost, method: :delete,
-					data: { confirm: "You sure?" }, class: "btn btn-danger"  if micropost.likes_count.to_i == 0 %>
-					<strong color="red">*メンバーが参加した後は編集、削除できません*</strong>
-					<% end %>
-				</span>
-				
-				<table class="table" >
-					<tr>
-						<td><h3 class="text-center">企画者</h3></td>
-						<td><div><%= image_tag micropost.user.image.url%>
-						</div>
-						<span class="user"><%= link_to micropost.user.name, micropost.user %></span></td>
-					</tr>
-					<tr>
-						<td>大学・学部・専攻・学年</td>
-						<td><%= micropost.user.university %>  <%= micropost.user.major %></td>
-					</tr>
-					<tr>
-						<td>人生の一冊</td>
-						<td><%= micropost.user.favorite_book %></td>
-					</tr>
-					<tr>
-						<td>プロフィール、読書遍歴</td>
-						<td><%= micropost.user.content %></td>
-					</tr>
-				</table>
-				
-
-
-				<% else %><%#  メンバー揃っていたら %>
-
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table" >			
@@ -149,17 +75,92 @@
 							</table>
 						</div>
 					</div>
+				</div>
 
-					<div class="panel panel-success">
-						<div class="panel-heading">
-							<h3 class="panel-title">終了しました！！</h3>
-						</div>
-					</div></div>
 
-					<% end %><%#  メンバー揃っていなかったら %>
-					<span class="timestamp">
-						Posted <%= time_ago_in_words(micropost.created_at) %> ago.</span>
-						<br>
-						<br>
-						<br>
-					</li>
+				<% unless current_user?(micropost.user) %>
+
+				<% if logged_in? %>
+
+				<% if micropost.like_user(current_user.id) %><%# いいねしてるか否か　%>
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">あなたは参加しています！人数が集まるまで待ってください！</h3>
+					</div>
+				</div>
+				<% else %><%# いいねしてるか否か　%>
+				<%= button_to micropost_likes_path(micropost), class: "btn btn-primary", data: { confirm: "You sure?" } do %>
+				<%= "参加する" %>
+				<% end %><%# do %>
+				<% end %><%# いいねしてるか否か　%>
+
+				<% else %><%# ログインしてなかったら　%>
+				<%= button_to "参加するにはサインアップしてください", signup_path,  class: "btn btn-primary"%>	
+				<% end %><%# ログインしてるか　%>
+			</span>
+			<% else %><%# ポストの持ち主ならば　%>
+
+			<%= link_to "企画を編集", edit_micropost_path(id: micropost.id), class: "btn btn-info" if micropost.likes_count.to_i == 0 %>	
+			<%= link_to "企画を削除", micropost, method: :delete,
+			data: { confirm: "You sure?" }, class: "btn btn-danger"  if micropost.likes_count.to_i == 0 %>
+			<strong color="red">*メンバーが参加した後は編集、削除できません*</strong>
+			<% end %>
+		</span>
+
+		<table class="table" >
+			<tr>
+				<td><h3 class="text-center">企画者</h3></td>
+				<td><div><%= image_tag micropost.user.image.url%>
+				</div>
+				<span class="user"><%= link_to micropost.user.name, micropost.user %></span></td>
+			</tr>
+			<tr>
+				<td>大学・学部・専攻・学年</td>
+				<td><%= micropost.user.university %>  <%= micropost.user.major %></td>
+			</tr>
+			<tr>
+				<td>人生の一冊</td>
+				<td><%= micropost.user.favorite_book %></td>
+			</tr>
+			<tr>
+				<td>プロフィール、読書遍歴</td>
+				<td><%= micropost.user.content %></td>
+			</tr>
+		</table>
+
+
+
+		<% else %><%#  メンバー揃っていたら %>
+
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table" >			
+					<tr>
+						<th><%= image_tag micropost.user.image.url  %></th>
+						<% micropost.likes.each do |like| %>
+						<th><%= image_tag like.user.image.url  %></th>
+						<% end %>
+					</tr>
+					<tr>
+						<th><%= link_to micropost.user.name, user_path(id: micropost.user.id) %></th> 	
+						<% micropost.likes.each do |like| %>
+						<th><%= link_to like.user.name, like.user %></th> 
+						<% end %></tr>
+					</table>
+				</div>
+			</div>
+
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">終了しました！！</h3>
+				</div>
+			</div></div>
+
+			<% end %><%#  メンバー揃っていなかったら %>
+			<span class="timestamp">
+				Posted <%= time_ago_in_words(micropost.created_at) %> ago.</span>
+				<br>
+				<br>
+			</li>
+			<br>
+		</li>
