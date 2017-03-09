@@ -29,7 +29,7 @@
 <%= f.label :password_confirmation, "再確認" %>
 <%= f.password_field :password_confirmation, class: 'form-control' %>
 <%= label :image, "プロフィール画像" %>
-<%= f.file_field :image,accept: 'image/jpeg,image/gif,image/png', class: 'form-control'  %>
+<%= f.file_field :image,accept: 'image/jpg,image/jpeg,image/gif,image/png', class: 'form-control'  %>
 
 <%= f.label :email,"メールアドレス(正確に入力してください)" %>
 <%= f.email_field :email, class: 'form-control' %>
