@@ -3,9 +3,9 @@
 
 <%= render 'shared/error_messages', object: f.object %>
 <%# エラーメセ出すのと、クリックしても吐蕃ようにする %>
-<div class="panel panel-default">
+<div class="panel panel-primary">
 	<div class="panel-heading">
-		<h3 class="panel-title">企画立ち上げ、入力欄</h3>
+		<h2 class="panel-title">企画立ち上げ、入力欄</h2>
 	</div>
 	<h>
 		本の名前(省略名でも構いませんが、できるだけ正確に)
@@ -16,7 +16,7 @@
 	</h>
 	<span class="picture">
 		<%#= f.file_field :picture,accept: 'image/jpg,image/jpeg,image/gif,image/png'  %>
-		<%= f.file_field :picture%>
+		<%= f.file_field :picture%><%# whitelistで画像の種類絞るのを消して暫定的処置%>
 	</span>
 	<%# 選択した画像がわかるように、また、エラー出たあとにも保持されるように  %>
 	<h>
