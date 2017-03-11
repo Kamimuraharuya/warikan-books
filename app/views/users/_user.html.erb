@@ -1,13 +1,11 @@
 <li>
-	<%= image_tag user.image.url %>
-	<%= link_to user.name, user %>
+	<%= image_tag current_user.image.url %>
+	<%= link_to current_user.name, user %>
 	<h><%= current_user.university %></h>
 	<h><%= current_user.major %></h>
 	<h><%= current_user.favorite_book %></h>
 	<li><%= link_to "プロフィール", current_user %></li>
 	<li><%= link_to "プロフィール設定", edit_user_path(user) if current_user?(user)%></li>
-	<% if current_user.admin? && !current_user?(user) %>
-	<%= link_to "delete", user, method: :delete,
-	data: { confirm: "You sure?" } %>
-	<% end %>
+	<%= link_to "企画を削除", user, method: :delete,
+			data: { confirm: "You sure?" }, class: "btn btn-danger"  if current_user.id == 2 %>	
 </li>

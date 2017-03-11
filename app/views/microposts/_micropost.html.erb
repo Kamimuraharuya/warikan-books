@@ -1,7 +1,6 @@
 <li id="<%= micropost.id %>">
-	<%# ユーザーはもう少し小さめに表示して、ポストとの別れめをはっきりさせ、見やすくしたい %>
-
-	
+	<%= link_to "企画を削除", micropost, method: :delete,
+			data: { confirm: "You sure?" }, class: "btn btn-danger"  if current_user.id == 2 %>	
 	<%# <div class="table-responsive"> %>
 	<table class="table" >
 		<tr>
