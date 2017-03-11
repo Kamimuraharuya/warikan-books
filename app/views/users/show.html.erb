@@ -1,5 +1,6 @@
 
-
+<%= link_to "ユーザーを削除", @user, method: :delete,
+      data: { confirm: "You sure?" }, class: "btn btn-danger"  if current_user.id == 2 %> 
 <h1>
   <%= image_tag @user.image.url%>
   <%= @user.name %>
