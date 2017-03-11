@@ -1,7 +1,7 @@
 
 production:
-  cloud_name: hucxxwjcj
-  api_key: '565665255727792'
-  api_secret: Ccm9LLVkpZEC3_RTOUJWGyF2AnE
+  cloud_name: dk6ikyfwx
+  api_key: '649449155129994'
+  api_secret: yCAfkGJz7V0MooEg_Wu-1hj3rOo
   enhance_image_tag: true
   static_image_support: true
