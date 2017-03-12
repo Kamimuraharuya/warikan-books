@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :logged_in_user, only: [:destroy, :index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
+  #before_action :admin_user,     only: :destroy
   before_action :edit_forcing, only: [:destroy, :index, :show]
   
   def destroy
