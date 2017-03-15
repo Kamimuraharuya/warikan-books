@@ -23,26 +23,37 @@ type="text/css" rel="stylesheet" />
 <link media="screen and (min-device-width:481px)" href="styles.css" type="text/css" rel="stylesheet" />
 
 <body>
-     <%= render 'layouts/header' %>
+ <%= render 'layouts/header' %>
 
-  <div class="container">
+ <div class="container">
   <br>
   <br>
   <br>
   <br>
 
   <% flash.each do |message_type, message| %>
-     <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+  <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
 
-      <% end %>
-<br>
-<br>
+  <% end %>
+  <br>
+  <br>
 
 
-    <%= yield %>
-    <%= render "layouts/footer" %>
-    <%= debug(params) if Rails.env.development? %>
+  <%= yield %>
 
+  <% unless logged_in? %>
+  <div class="center jumbotron">
+    <h1>ワリカンbooks</h1>
+    <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-primary" %>
   </div>
+  <div>
+    <strong>
+      <%= link_to "ワリカン成立後の流れ", about_path %>
+    </strong>
+  </div>
+  <%= render "layouts/footer" %>
+  <%= debug(params) if Rails.env.development? %>
+
+</div>
 </body>
 </html>
